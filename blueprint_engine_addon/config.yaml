@@ -13,8 +13,16 @@ startup: application
 boot: auto
 hassio_api: true
 hassio_role: default
+# The user will need to have the InfluxDB add-on running.
+services:
+  - "influxdb:want"
 image: "ghcr.io/{owner}/{arch}-addon-blueprint-engine"
 ports:
   "8124/tcp": 8124 # Port for the internal API
 schema:
   log_level: list(trace|debug|info|notice|warning|error|fatal)?
+  # InfluxDB v2 Configuration
+  influxdb_url: str
+  influxdb_token: password
+  influxdb_org: str
+  influxdb_bucket: str
